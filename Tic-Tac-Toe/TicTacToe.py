@@ -110,7 +110,7 @@ while running:
         #Check for three in a row/column/diagonal
         for i in range(3):
             if (grid[i][0] == grid[i][1] == grid[i][2] == 'X' or grid[i][0] == grid[i][1] == grid[i][2] == 'O') and game_over:  
-                #pygame.draw.line(screen, (255, 0, 0), (0, i * CELL_SIZE + CELL_SIZE // 2), (WIDTH, i * CELL_SIZE + CELL_SIZE // 2), 5)
+                pygame.draw.line(screen, (255, 0, 0), (0, i * CELL_SIZE // 2), (WIDTH, i * CELL_SIZE + CELL_SIZE // 2), 5)
                 game_over = False
                 
             if (grid[0][i] == grid[1][i] == grid[2][i] == 'X' or grid[0][i] == grid[1][i] == grid[2][i] == 'O') and game_over:  
