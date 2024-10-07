@@ -79,6 +79,7 @@ turn = True
 # Check for game end 
 game_over = True
 
+linenr = 0
 # Main game loop
 running = True
 while running:
@@ -110,19 +111,24 @@ while running:
         #Check for three in a row/column/diagonal
         for i in range(3):
             if (grid[i][0] == grid[i][1] == grid[i][2] == 'X' or grid[i][0] == grid[i][1] == grid[i][2] == 'O') and game_over:  
-                pygame.draw.line(screen, (255, 0, 0), (0, i * CELL_SIZE // 2), (WIDTH, i * CELL_SIZE + CELL_SIZE // 2), 5)
+                linenr  = i 
                 game_over = False
                 
             if (grid[0][i] == grid[1][i] == grid[2][i] == 'X' or grid[0][i] == grid[1][i] == grid[2][i] == 'O') and game_over:  
                 game_over = False
-                #pygame.draw.line((255, 0, 0), (), (), 3)
+                if i == 0 :
+                    linenr = 4
+                if i == 1 :
+                    linenr = 5
+                if i == 2 :
+                    linenr = 6
 
         if (grid[0][0] == grid[1][1] == grid[2][2] == 'X' or grid[0][0] == grid[1][1] == grid[2][2] == 'O') and game_over:  
             game_over = False
-            #pygame.draw.line((255, 0, 0), (), (), 3)
+            linenr = 7
         if (grid[0][2] == grid[1][1] == grid[2][0] == 'X' or grid[0][2] == grid[1][1] == grid[2][0] == 'O') and game_over:  
             game_over = False
-            #pygame.draw.line((255, 0, 0), (), (), 3)
+            linenr = 8
 
     # Fill the background
     screen.fill(BACKGROUND_COLOR)
@@ -133,6 +139,26 @@ while running:
 
     # Draw the reset button
     draw_button()
+
+    if game_over == False :
+        if linenr == 0 :
+            pygame.draw.line(screen, (255, 0, 0), (0, CELL_SIZE//2), (WIDTH, CELL_SIZE//2), 5)
+        if linenr == 1 :
+            pygame.draw.line(screen, (255, 0, 0), (0, 2 * CELL_SIZE - CELL_SIZE // 2), (WIDTH, 2 * CELL_SIZE - CELL_SIZE // 2), 5)
+        if linenr == 2 :
+            pygame.draw.line(screen, (255, 0, 0), (0, 3 * CELL_SIZE - CELL_SIZE // 2), (WIDTH, 3 * CELL_SIZE - CELL_SIZE // 2), 5)
+
+        if linenr == 4 :
+            pygame.draw.line(screen, (255, 0, 0), (CELL_SIZE // 2, 0),(CELL_SIZE // 2, HEIGHT - 60), 5)
+        if linenr == 5 :
+            pygame.draw.line(screen, (255, 0, 0), (2 * CELL_SIZE - CELL_SIZE // 2, 0), (2 * CELL_SIZE - CELL_SIZE // 2, HEIGHT - 60), 5)
+        if linenr == 6 :
+            pygame.draw.line(screen, (255, 0, 0), (3 * CELL_SIZE - CELL_SIZE // 2, 0), (3* CELL_SIZE - CELL_SIZE // 2, HEIGHT - 60), 5)
+
+        if linenr == 7 :
+            pygame.draw.line(screen, (255, 0, 0), (0,0), (HEIGHT, HEIGHT), 5)
+        if linenr == 8 :
+            pygame.draw.line(screen, (255, 0 , 0), (WIDTH, 0), (0, HEIGHT - 50), 5)
 
     # Update the display
     pygame.display.flip()
