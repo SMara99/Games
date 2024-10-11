@@ -3,25 +3,49 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #C3B1E1;
     margin: 0;
 }
 
-
-#gameBoard {
-    display: grid;
-    grid-template-columns: repeat(10, 40px); /* Change this for different column counts */
-    grid-template-rows: repeat(10, 40px);   /* Change this for different row counts */
-    gap: 1px;
-    margin: 20px 0;
+.game-container {
+    display: flex;               /* Use flexbox for centering */
+    flex-direction: column;      /* Stack items vertically */
+    align-items: center;         /* Center items horizontally */
+    justify-content: center;     /* Center items vertically */
+    position: relative;          /* For absolutely positioned children */
+    
 }
 
+.game-board {
+    display: grid;              /* or any layout method you're using for the board */
+    grid-template-columns: repeat(10, 1fr); /* Adjust according to your needs */
+    grid-template-rows: repeat(10, 1fr); /* Adjust according to your needs */
+    border: 1px solid #000;     /* Optional: to visualize the board boundary */
+    margin-bottom: 20px;        /* Space between board and button */
+}
+
+.game-message {
+    position: absolute; /* Position absolute to the nearest positioned ancestor */
+    top: 40%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center adjustment */
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 8px;
+    display: none; /* Hide it by default */
+    z-index: 10; /* Ensure it appears above the board */
+}
 
 .cell {
     width: 40px;
     height: 40px;
     background-color: #b8b8b8;
-    border: 1px solid #999;
+    border: 1px solid #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,8 +63,16 @@ body {
     background-color: red; /* Color for mines */
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.reset-button {
+    display: flex;
+    padding: 10px 20px;         /* Add some padding */
+    font-size: 16px;            /* Font size */
+    cursor: pointer;             /* Pointer cursor for hover */
+    border: 2px solid #000;     /* Button border */
+    background-color: #770737;     /* Button background */
+    border-radius: 5px;         /* Rounded corners */
+}
+
+.reset-button:hover {
+    background-color: #DA70D6;
 }
